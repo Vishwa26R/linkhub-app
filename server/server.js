@@ -1,6 +1,6 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import connectDB from './config/db.js';
+import dotenv from "dotenv";
+import express from "express";
+import connectDB from "./config/db.js";
 
 // Load environment variables from .env file
 dotenv.config();
