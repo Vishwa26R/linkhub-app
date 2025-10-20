@@ -1,5 +1,6 @@
 import User from '../models/userModel.js';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken'; // 👈 Add this import
 
 // @desc   Register a new user
 // @route  POST /api/users/register
