@@ -1,23 +1,23 @@
-import dotenv from "dotenv";
-import express from "express";
-import connectDB from "./config/db.js";
+import express from 'express';
+import dotenv from 'dotenv';
+import connectDB from './config/db.js';
+// Import the new user routes
+import userRoutes from './routes/userRoutes.js';
 
-// Load environment variables from .env file
 dotenv.config();
-
-// Connect to the database
 connectDB();
-
-// Initialize our Express app
 const app = express();
 
-// A simple test route to make sure the server is working
+// Middleware to parse JSON bodies
+// This MUST be before your routes are defined
+app.use(express.json());
+
 app.get('/', (req, res) => {
   res.send('API is running...');
 });
 
-// Get the port from our environment variables, or default to 5000
-const PORT = process.env.PORT || 5000;
+// Tell the app to use the userRoutes for any URL that starts with '/api/users'
+app.use('/api/users', userRoutes);
 
-// Start the server and listen for requests on the specified port
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
